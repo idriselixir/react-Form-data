@@ -1,77 +1,68 @@
 import React, { useState } from 'react';
+import './Form.css';
 
-function App() {
+const Form = () => {
   const [formData, setFormData] = useState({
     name: '',
-    number: '',
+    mobile: '',
     email: '',
     dob: '',
-    placeOfOrigin: '',
+    origin: '',
     age: '',
     gender: '',
     status: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    // Do something with the form data
     console.log(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-      </label>
-      <label>
-        Number:
-        <input type="text" name="number" value={formData.number} onChange={handleChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-      </label>
-      <label>
-        Date of Birth:
-        <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
-      </label>
-      <label>
-        Place of Origin:
-        <input type="text" name="placeOfOrigin" value={formData.placeOfOrigin} onChange={handleChange} />
-      </label>
-      <label>
-        Age:
-        <input type="number" name="age" value={formData.age} onChange={handleChange} />
-      </label>
-      <label>
-        Gender:
-        <select name="gender" value={formData.gender} onChange={handleChange}>
+    <div className="form-container">
+      <h2>Registration Form</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+
+        <label htmlFor="mobile">Mobile Number:</label>
+        <input type="text" id="mobile" name="mobile" value={formData.mobile} onChange={handleChange} />
+
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+
+        <label htmlFor="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" value={formData.dob} onChange={handleChange} />
+
+        <label htmlFor="origin">Place of Origin:</label>
+        <input type="text" id="origin" name="origin" value={formData.origin} onChange={handleChange} />
+
+        <label htmlFor="age">Age:</label>
+        <input type="number" id="age" name="age" value={formData.age} onChange={handleChange} />
+
+        <label htmlFor="gender">Gender:</label>
+        <select id="gender" name="gender" value={formData.gender} onChange={handleChange}>
+          <option value="">Select</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select>
-      </label>
-      <label>
-        Status:
-        <select name="status" value={formData.status} onChange={handleChange}>
-          <option value="single">Single</option>
-          <option value="married">Married</option>
-          <option value="divorced">Divorced</option>
-          <option value="widowed">Widowed</option>
-        </select>
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
 
-export default App;
+        <label htmlFor="status">Status:</label>
+        <input type="text" id="status" name="status" value={formData.status} onChange={handleChange} />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default Form;
